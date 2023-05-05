@@ -8,6 +8,7 @@ local opt = vim.opt
 
 o.termguicolors = true
 
+-- Enable mouse support in the terminal
 opt.mouse = "a"
 
 -- Map <leader> to space
