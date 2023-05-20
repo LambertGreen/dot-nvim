@@ -42,6 +42,11 @@ require("lazy").setup({
 			vim.cmd([[colorscheme tokyonight]])
 		end,
 	},
+	{
+		"TimUntersberger/neogit",	
+		dependencies = { { "nvim-lua/plenary.nvim" } },
+	},
+
 }, opts)
 
 
