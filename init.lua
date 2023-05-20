@@ -1,16 +1,37 @@
--------------------------------------------------
+--================================================
 -- Lambert's Neovim configuration
+--================================================
+
 -------------------------------------------------
+-- Install Lazy package manager
+-------------------------------------------------
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-local g = vim.g
-local o = vim.o
-local opt = vim.opt
-
-o.termguicolors = true
-
+-------------------------------------------------
+-- Vim Settings
+-------------------------------------------------
+vim.o.termguicolors = true
 -- Enable mouse support in the terminal
-opt.mouse = "a"
-
+vim.opt.mouse = "a"
 -- Map <leader> to space
-g.mapleader = " "
-g.maplocalleader = " "
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+
+-------------------------------------------------
+-- Setup packages
+-------------------------------------------------
+require("lazy").setup(plugins, opts)
+
+
