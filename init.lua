@@ -37,8 +37,9 @@ vim.g.maplocalleader = " "
 
 vim.keymap.set('n', '<leader>bs', ':w<CR>', { silent = true, desc = "Buffer save" })
 vim.keymap.set('n', '<leader>bd', ':Bdelete<CR>', { silent = true, desc = "Buffer delete" })
+vim.keymap.set('n', '<leader>cw', ':%s/\\s\\+$//e<CR>', { noremap = true, silent = true })
 
--------------------------------------------------
+------------------------------------------------
 -- Setup packages
 -------------------------------------------------
 require("lazy").setup({
@@ -52,9 +53,9 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"TimUntersberger/neogit",	
+		"TimUntersberger/neogit",
 		dependencies = { { "nvim-lua/plenary.nvim" } },
-		keys = { 
+		keys = {
 			{ '<leader>gg', '<cmd>Neogit<CR>', desc = 'Neogit' }
 		},
 		opts = {
@@ -62,10 +63,10 @@ require("lazy").setup({
 		}
 	},
 	{
-		'akinsho/toggleterm.nvim', 
-		version = "*", 
+		'akinsho/toggleterm.nvim',
+		version = "*",
 		config = true,
-		keys = { 
+		keys = {
 			{ '<leader>ot', '<cmd>ToggleTerm<CR>', desc = 'ToggleTerm' }
 		},
 	},
@@ -75,10 +76,11 @@ require("lazy").setup({
 			require('Comment').setup()
 		end,
 	},
-
 	{
 		"gpanders/editorconfig.nvim",
 	},
+	{
+		'lukoshkin/trailing-whitespace',
+	}
 }, opts)
-
 
