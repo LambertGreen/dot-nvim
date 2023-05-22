@@ -47,10 +47,7 @@ require("lazy").setup({
 		"folke/tokyonight.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			-- load the colorscheme here
-			vim.cmd([[colorscheme tokyonight]])
-		end,
+		config = function() vim.cmd([[colorscheme tokyonight]]) end,
 	},
 	{
 		"TimUntersberger/neogit",
@@ -58,9 +55,7 @@ require("lazy").setup({
 		keys = {
 			{ '<leader>gg', '<cmd>Neogit<CR>', desc = 'Neogit' }
 		},
-		opts = {
-			use_magit_keybindings = true
-		}
+		opts = { use_magit_keybindings = true }
 	},
 	{
 		'akinsho/toggleterm.nvim',
@@ -72,15 +67,9 @@ require("lazy").setup({
 	},
 	{
 		"numToStr/Comment.nvim",
-		config = function()
-			require('Comment').setup()
-		end,
+		config = function() require('Comment').setup() end,
 	},
-	{
-		"gpanders/editorconfig.nvim",
-	},
-	{
-		'lukoshkin/trailing-whitespace',
-	}
+	{ "gpanders/editorconfig.nvim", },
+	{ 'lukoshkin/trailing-whitespace', }
 }, opts)
 
