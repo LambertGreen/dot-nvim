@@ -71,6 +71,9 @@ require("lazy").setup({
 		end,
 	},
 
+	{
+		"gpanders/editorconfig.nvim",
+	},
 }, opts)
 
 
