@@ -52,6 +52,14 @@ require("lazy").setup({
 			use_magit_keybindings = true
 		}
 	},
+	{
+		'akinsho/toggleterm.nvim', 
+		version = "*", 
+		config = true,
+		keys = { 
+			{ '<leader>ot', '<cmd>ToggleTerm<CR>', desc = 'ToggleTerm' }
+		},
+	},
 
 }, opts)
 
