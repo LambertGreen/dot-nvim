@@ -28,10 +28,15 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 
+------------------------------------------------
+-- Keymaps
+-------------------------------------------------
 -- Map <leader> to space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set('n', '<leader>bs', ':w<CR>', { silent = true, desc = "Buffer save" })
+vim.keymap.set('n', '<leader>bd', ':Bdelete<CR>', { silent = true, desc = "Buffer delete" })
 
 -------------------------------------------------
 -- Setup packages
