@@ -60,6 +60,12 @@ require("lazy").setup({
 			{ '<leader>ot', '<cmd>ToggleTerm<CR>', desc = 'ToggleTerm' }
 		},
 	},
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require('Comment').setup()
+		end,
+	},
 
 }, opts)
 
