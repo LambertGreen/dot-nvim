@@ -87,6 +87,12 @@ require("lazy").setup({
 		config = function() require('Comment').setup() end,
 	},
 	{ "gpanders/editorconfig.nvim", },
-	{ 'lukoshkin/trailing-whitespace', }
+	{ 'lukoshkin/trailing-whitespace', },
+	-- {
+	-- 	'nvim-orgmode/orgmode',
+	-- 	dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+	-- 	config = function() require('orgmode').setup() end,
+	-- },
+	{ "folke/neodev.nvim", },
 }, opts)
 
