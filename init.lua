@@ -53,7 +53,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set('n', '<leader>bs', ':w<CR>', { silent = true, desc = "Buffer save" })
-vim.keymap.set('n', '<leader>bd', ':Bdelete<CR>', { silent = true, desc = "Buffer delete" })
+vim.keymap.set('n', '<leader>bd', ':bd<CR>', { silent = true, desc = "Buffer delete" })
+vim.keymap.set('n', '<leader>qq', ':q<CR>', { silent = true, desc = "Quit Vim" })
 vim.keymap.set('n', '<leader>cw', ':%s/\\s\\+$//e<CR>', { noremap = true, silent = true })
 
 ------------------------------------------------
