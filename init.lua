@@ -101,5 +101,15 @@ require("lazy").setup({
 	-- 	config = function() require('orgmode').setup() end,
 	-- },
 	{ "folke/neodev.nvim", },
+	{
+		"goolord/alpha-nvim",
+	},
+	{
+		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		keys = {
+			{ '<leader>ff', ":Telescope find_files<CR>", desc = 'Find Files'},
+		},
+	},
 }, opts)
 
