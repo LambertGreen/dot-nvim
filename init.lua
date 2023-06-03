@@ -62,6 +62,8 @@ vim.keymap.set('n', '<leader>bd', ':bd<CR>', { silent = true, desc = "Buffer del
 vim.keymap.set('n', '<leader>bp', ':bp<CR>', { silent = true, desc = "Buffer previous" })
 vim.keymap.set('n', '<leader>bn', ':bn<CR>', { silent = true, desc = "Buffer next" })
 
+vim.keymap.set('n', '<leader>bb', '<Cmd>Telescop buffers<CR>', { silent = true, desc = "Buffer List" })
+
 -- Window management
 vim.keymap.set('n', '<leader>ws', ':split<CR>', { silent = true, desc = "Window split" })
 vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { silent = true, desc = "Window vertical split" })
