@@ -128,14 +128,49 @@ require("lazy").setup({
 	-- },
 	{ "folke/neodev.nvim", },
 	{
-		"goolord/alpha-nvim",
+		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+		dependencies = {
+			{ 'nvim-lua/plenary.nvim' },
+			{
+				"ahmedkhalf/project.nvim",
+				opts = {},
+				event = "VeryLazy",
+				config = function(_, opts)
+					require("project_nvim").setup(opts)
+					require("telescope").load_extension("projects")
+				end,
+				keys = {
+					{ '<leader>ff', ":Telescope find_files<CR>", desc = 'Find Files'},
+					{ '<leader><leader>', ":Telescope find_files<CR>", desc = 'Find Files'},
+					{ "<leader>pp", "<Cmd>Telescope projects<CR>", desc = "Projects" },
+				},
+			},
+
+		},
 	},
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		keys = {
-			{ '<leader>ff', ":Telescope find_files<CR>", desc = 'Find Files'},
-		},
+		"goolord/alpha-nvim",
+		optional = true,
+		opts = function(_, dashboard)
+			local button = dashboard.button("p", " " .. " Projects", ":Telescope projects <CR>")
+			button.opts.hl = "AlphaButtons"
+			button.opts.hl_shortcut = "AlphaShortcut"
+			table.insert(dashboard.section.buttons.val, 4, button)
+		end,
+	},
+	{
+		"echasnovski/mini.starter",
+		optional = true,
+		opts = function(_, opts)
+			local items = {
+				{
+					name = "Projects",
+					action = "Telescope projects",
+					section = string.rep(" ", 22) .. "Telescope",
+				},
+			}
+			vim.list_extend(opts.items, items)
+		end,
 	},
 }, opts)
 
