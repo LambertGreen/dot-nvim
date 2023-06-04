@@ -99,7 +99,18 @@ require("lazy").setup({
 		"catppuccin/nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function() vim.cmd([[colorscheme catppuccin]]) end,
+		config = function()
+			vim.cmd([[colorscheme catppuccin]])
+			if vim.fn.has('mac') then
+				local cmd = "defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light"
+				mode = vim.fn.system(cmd):gsub("\n", ""):lower()
+				if mode == "dark" then
+					vim.cmd('set background=dark')
+				else
+					vim.cmd('set background=light')
+				end
+			end
+		end,
 	},
 	{
 		"TimUntersberger/neogit",
