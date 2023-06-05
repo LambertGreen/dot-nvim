@@ -112,6 +112,8 @@ require("lazy").setup({
 					vim.cmd('set background=light')
 				end
 			end
+			vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
+			vim.cmd('highlight NonText ctermbg=NONE guibg=NONE')
 		end,
 	},
 	{
