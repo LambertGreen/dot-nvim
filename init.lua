@@ -21,13 +21,15 @@ vim.opt.rtp:prepend(lazypath)
 -------------------------------------------------
 -- Vim Settings
 -------------------------------------------------
+vim.o.title = true
+vim.o.titlestring="%F - Nvim"
+
 vim.opt.termguicolors = true
 -- Enable mouse support in the terminal
 vim.opt.mouse = "a"
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
-
 -- GUI
 vim.opt.guifont  = "Iosevka NF:h11"
 -- if vim.g.fv_loaded then
