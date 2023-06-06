@@ -156,6 +156,7 @@ require("lazy").setup({
             -- Load custom treesitter grammar for org filetype
             require('orgmode').setup_ts_grammar()
 
+			require 'nvim-treesitter.install'.compilers = { "clang", "zig" }
             -- Treesitter configuration
             require('nvim-treesitter.configs').setup {
                 -- If TS highlights are not enabled at all, or disabled via `disable` prop,
