@@ -7,14 +7,14 @@
 -------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",     -- latest stable release
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -35,18 +35,18 @@ vim.opt.tabstop        = 4
 -- GUI
 vim.opt.guifont        = "Iosevka NF:h11"
 -- if vim.g.fv_loaded then
--- 	vim.cmd([[
--- 		if g:fvim_os == 'windows' || g:fvim_render_scale > 1.0
--- 		  set guifont=Iosevka\ NF:h14
--- 		else
--- 		  set guifont=Iosevka\ NF:h28
--- 		endif
+--      vim.cmd([[
+--          if g:fvim_os == 'windows' || g:fvim_render_scale > 1.0
+--            set guifont=Iosevka\ NF:h14
+--          else
+--            set guifont=Iosevka\ NF:h28
+--          endif
 --
--- 		" Ctrl-ScrollWheel for zooming in/out
--- 		nnoremap <silent> <C-ScrollWheelUp> :set guifont=+<CR>
--- 		nnoremap <silent> <C-ScrollWheelDown> :set guifont=-<CR>
--- 		nnoremap <A-CR> :FVimToggleFullScreen<CR>
--- 		]])
+--          " Ctrl-ScrollWheel for zooming in/out
+--          nnoremap <silent> <C-ScrollWheelUp> :set guifont=+<CR>
+--          nnoremap <silent> <C-ScrollWheelDown> :set guifont=-<CR>
+--          nnoremap <A-CR> :FVimToggleFullScreen<CR>
+--          ]])
 -- end
 
 ------------------------------------------------
@@ -90,156 +90,202 @@ vim.keymap.set('n', '<leader>cw', ':%s/\\s\\+$//e<CR>', { noremap = true, silent
 
 -- Code: time command
 function _G.time_command(cmd)
-    local start_time = vim.loop.hrtime()
-    vim.cmd(cmd)
-    local elapsed_time = vim.loop.hrtime() - start_time
-    print("Command " .. cmd .. " took " .. elapsed_time / 1e9 .. " seconds")
+  local start_time = vim.loop.hrtime()
+  vim.cmd(cmd)
+  local elapsed_time = vim.loop.hrtime() - start_time
+  print("Command " .. cmd .. " took " .. elapsed_time / 1e9 .. " seconds")
 end
 
 ------------------------------------------------
 -- Setup packages
 -------------------------------------------------
 require("lazy").setup({
-    {
-        -- "folke/tokyonight.nvim",
-        -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        -- priority = 1000, -- make sure to load this before all the other start plugins
-        -- config = function() vim.cmd([[colorscheme tokyonight]]) end,
-    },
-    {
-        "catppuccin/nvim",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
-        config = function()
-            vim.cmd([[colorscheme catppuccin]])
-            if vim.fn.has('mac') then
-                local cmd = "defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light"
-                mode = vim.fn.system(cmd):gsub("\n", ""):lower()
-                if mode == "dark" then
-                    vim.cmd('set background=dark')
-                else
-                    vim.cmd('set background=light')
-                end
-            end
-            vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
-            vim.cmd('highlight NonText ctermbg=NONE guibg=NONE')
-        end,
-    },
-    {
-        "TimUntersberger/neogit",
-        dependencies = { { "nvim-lua/plenary.nvim" } },
-        keys = {
-            { '<leader>gg', '<cmd>Neogit<CR>', desc = 'Neogit' }
-        },
-        opts = { use_magit_keybindings = true }
-    },
-    {
-        'akinsho/toggleterm.nvim',
-        version = "*",
-        config = true,
-        keys = {
-            { '<leader>ot', '<cmd>ToggleTerm<CR>', desc = 'ToggleTerm' }
-        },
-    },
-    {
-        "numToStr/Comment.nvim",
-        config = function() require('Comment').setup() end,
-    },
-    { "gpanders/editorconfig.nvim", },
-    { 'lukoshkin/trailing-whitespace', },
-    {
-        'nvim-orgmode/orgmode',
-        dependencies = { { "nvim-treesitter/nvim-treesitter" } },
-        ft = { 'org' },
-        config = function()
-            require('orgmode').setup()
-            -- Load custom treesitter grammar for org filetype
-            require('orgmode').setup_ts_grammar()
-
-			require 'nvim-treesitter.install'.compilers = { "clang", "zig" }
-            -- Treesitter configuration
-            require('nvim-treesitter.configs').setup {
-                -- If TS highlights are not enabled at all, or disabled via `disable` prop,
-                -- highlighting will fallback to default Vim syntax highlighting
-                highlight = {
-                    enable = true,
-                    -- Required for spellcheck, some LaTex highlights and
-                    -- code block highlights that do not have ts grammar
-                    additional_vim_regex_highlighting = { 'org' },
-                },
-                ensure_installed = { 'org' }, -- Or run :TSUpdate org
-            }
-
-            require('orgmode').setup({
-                org_agenda_files = { '~/Dropbox/org/*', '~/my-orgs/**/*' },
-                org_default_notes_file = '~/Dropbox/org/refile.org',
-            })
-        end,
-    },
-    { "folke/neodev.nvim", },
-    {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.1',
-        dependencies = {
-            { 'nvim-lua/plenary.nvim' },
-            {
-                "ahmedkhalf/project.nvim",
-                opts = {},
-                event = "VeryLazy",
-                config = function(_, opts)
-                    require("project_nvim").setup(opts)
-                    require("telescope").load_extension("projects")
-                end,
-                keys = {
-                    { '<leader>ff',       ":Telescope find_files<CR>",   desc = 'Find Files' },
-                    { '<leader><leader>', ":Telescope find_files<CR>",   desc = 'Find Files' },
-                    { "<leader>pp",       "<Cmd>Telescope projects<CR>", desc = "Projects" },
-                },
-            },
-
-        },
-    },
-    {
-        "goolord/alpha-nvim",
-        optional = true,
-        opts = function(_, dashboard)
-            local button = dashboard.button("p", " " .. " Projects", ":Telescope projects <CR>")
-            button.opts.hl = "AlphaButtons"
-            button.opts.hl_shortcut = "AlphaShortcut"
-            table.insert(dashboard.section.buttons.val, 4, button)
-        end,
-    },
-    {
-        "echasnovski/mini.starter",
-        optional = true,
-        opts = function(_, opts)
-            local items = {
-                {
-                    name = "Projects",
-                    action = "Telescope projects",
-                    section = string.rep(" ", 22) .. "Telescope",
-                },
-            }
-            vim.list_extend(opts.items, items)
-        end,
-    },
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-        end,
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
-    },
-    {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-            require('gitsigns').setup()
+  {
+    -- "folke/tokyonight.nvim",
+    -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    -- priority = 1000, -- make sure to load this before all the other start plugins
+    -- config = function() vim.cmd([[colorscheme tokyonight]]) end,
+  },
+  {
+    "catppuccin/nvim",
+    lazy = false,        -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000,     -- make sure to load this before all the other start plugins
+    config = function()
+      vim.cmd([[colorscheme catppuccin]])
+      if vim.fn.has('mac') then
+        local cmd = "defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light"
+        mode = vim.fn.system(cmd):gsub("\n", ""):lower()
+        if mode == "dark" then
+          vim.cmd('set background=dark')
+        else
+          vim.cmd('set background=light')
         end
+      end
+      -- vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
+      -- vim.cmd('highlight NonText ctermbg=NONE guibg=NONE')
+    end,
+  },
+  {
+    "TimUntersberger/neogit",
+    dependencies = { { "nvim-lua/plenary.nvim" } },
+    keys = {
+      { '<leader>gg', '<cmd>Neogit<CR>', desc = 'Neogit' }
     },
+    opts = { use_magit_keybindings = true }
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    config = true,
+    keys = {
+      { '<leader>ot', '<cmd>ToggleTerm<CR>', desc = 'ToggleTerm' }
+    },
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = function() require('Comment').setup() end,
+  },
+  { "gpanders/editorconfig.nvim", },
+  { 'lukoshkin/trailing-whitespace', },
+  {
+    'nvim-orgmode/orgmode',
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    ft = { 'org' },
+    config = function()
+      require('orgmode').setup()
+      -- Load custom treesitter grammar for org filetype
+      require('orgmode').setup_ts_grammar()
+
+      require 'nvim-treesitter.install'.compilers = { "clang", "zig" }
+      -- Treesitter configuration
+      require('nvim-treesitter.configs').setup {
+        -- If TS highlights are not enabled at all, or disabled via `disable` prop,
+        -- highlighting will fallback to default Vim syntax highlighting
+        highlight = {
+          enable = true,
+          -- Required for spellcheck, some LaTex highlights and
+          -- code block highlights that do not have ts grammar
+          additional_vim_regex_highlighting = { 'org' },
+        },
+        ensure_installed = { 'org' },         -- Or run :TSUpdate org
+      }
+
+      require('orgmode').setup({
+        org_agenda_files = { '~/Dropbox/org/*', '~/my-orgs/**/*' },
+        org_default_notes_file = '~/Dropbox/org/refile.org',
+      })
+    end,
+  },
+  { "folke/neodev.nvim", },
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim' },
+      {
+        "ahmedkhalf/project.nvim",
+        -- opts = {},
+        -- event = "VeryLazy",
+        config = function(_, opts)
+          require("project_nvim").setup(opts)
+          require("telescope").load_extension("projects")
+        end,
+        keys = {
+          { '<leader>ff',       ":Telescope find_files<CR>",   desc = 'Find Files' },
+          { '<leader><leader>', ":Telescope find_files<CR>",   desc = 'Find Files' },
+          { "<leader>pp",       "<Cmd>Telescope projects<CR>", desc = "Projects" },
+        },
+      },
+
+    },
+  },
+  { 'nvim-tree/nvim-web-devicons' },
+  {
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup()
+      -- require('dashboard').setup {
+      --     theme = 'doom',
+      --     config = {
+      --         -- header = {}, --your header
+      --         center = {
+      --             {
+      --                 icon = ' ',
+      --                 icon_hl = 'Title',
+      --                 desc = 'Find File           ',
+      --                 desc_hl = 'String',
+      --                 key = 'b',
+      --                 keymap = 'SPC f f',
+      --                 key_hl = 'Number',
+      --                 action = 'lua print(2)'
+      --             },
+      --             {
+      --                 icon = ' ',
+      --                 desc = 'Find Dotfiles',
+      --                 key = 'f',
+      --                 keymap = 'SPC f d',
+      --                 action = 'lua print(3)'
+      --             },
+      --         },
+      --     },
+      -- }
+    end,
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+  },
+  -- {
+  --     'goolord/alpha-nvim',
+  --     event = "VimEnter",
+  --     dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --     config = function()
+  --         require('alpha').setup(require("alpha.themes.dashboard").config)
+  --     end,
+  -- },
+  -- {
+  --     'goolord/alpha-nvim',
+  --     event = "VimEnter",
+  --     dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --     config = function()
+  --         local startify = require("alpha.themes.startify")
+  --         startify.section.top_buttons.val = {
+  --             startify.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+  --             startify.button("f", "  Find file", ":Telescope find_files <CR>"),
+  --             startify.button("p", "  Find project", ":Telescope projects <CR>"),
+  --             startify.button("t", "  Find text", ":Telescope live_grep <CR>"),
+  --             startify.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
+  --             startify.button("z", "  Lazy", ":Lazy<CR>"),
+  --             -- startify.button("q", "  Quit Neovim", ":qa<CR>"),
+  --         }
+  --         require('alpha').setup(startify.config)
+  --     end,
+  -- },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+  -- Undo-Tree
+  {
+    "jiaoshijie/undotree",
+    config       = function()
+      require('undotree').setup()
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  },
 }, opts)
