@@ -13,7 +13,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",     -- latest stable release
+    "--branch=stable", -- latest stable release
     lazypath,
   })
 end
@@ -109,8 +109,8 @@ require("lazy").setup({
   },
   {
     "catppuccin/nvim",
-    lazy = false,        -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000,     -- make sure to load this before all the other start plugins
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       vim.cmd([[colorscheme catppuccin]])
       if vim.fn.has('mac') then
@@ -168,12 +168,11 @@ require("lazy").setup({
           -- code block highlights that do not have ts grammar
           additional_vim_regex_highlighting = { 'org' },
         },
-        ensure_installed = { 'org' },         -- Or run :TSUpdate org
+        ensure_installed = { 'org' }, -- Or run :TSUpdate org
       }
-
       require('orgmode').setup({
-        org_agenda_files = { '~/Dropbox/org/*', '~/my-orgs/**/*' },
-        org_default_notes_file = '~/Dropbox/org/refile.org',
+        org_agenda_files = { '~/org/**/*' },
+        org_default_notes_file = '~/org/refile.org',
       })
     end,
   },
