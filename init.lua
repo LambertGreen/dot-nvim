@@ -45,8 +45,8 @@ end
 -- Keymaps
 -------------------------------------------------
 -- Map <leader> to space
-vim.g.mapleader        = " "
-vim.g.maplocalleader   = " "
+vim.g.mapleader      = " "
+vim.g.maplocalleader = " "
 
 -- Use useful Emacs/Readline bindings while in Insert mode
 vim.keymap.set('i', '<C-a>', '<C-o>0', {})
