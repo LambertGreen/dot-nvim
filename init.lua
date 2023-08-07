@@ -40,20 +40,6 @@ if os_name == "Windows" then
 else
   vim.opt.guifont = "Iosevka Nerd Font:h13"
 end
--- if vim.g.fv_loaded then
---      vim.cmd([[
---          if g:fvim_os == 'windows' || g:fvim_render_scale > 1.0
---            set guifont=Iosevka\ NF:h14
---          else
---            set guifont=Iosevka\ NF:h28
---          endif
---
---          " Ctrl-ScrollWheel for zooming in/out
---          nnoremap <silent> <C-ScrollWheelUp> :set guifont=+<CR>
---          nnoremap <silent> <C-ScrollWheelDown> :set guifont=-<CR>
---          nnoremap <A-CR> :FVimToggleFullScreen<CR>
---          ]])
--- end
 
 ------------------------------------------------
 -- Keymaps
