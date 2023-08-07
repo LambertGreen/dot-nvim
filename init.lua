@@ -34,7 +34,12 @@ vim.opt.softtabstop    = 4
 vim.opt.tabstop        = 4
 
 -- GUI
-vim.opt.guifont        = "Iosevka NF:h11"
+local os_name          = jit.os
+if os_name == "Windows" then
+  vim.opt.guifont = "Iosevka NF:h13"
+else
+  vim.opt.guifont = "Iosevka Nerd Font:h13"
+end
 -- if vim.g.fv_loaded then
 --      vim.cmd([[
 --          if g:fvim_os == 'windows' || g:fvim_render_scale > 1.0
