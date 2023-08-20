@@ -32,6 +32,20 @@ vim.opt.shiftwidth     = 4
 vim.opt.softtabstop    = 4
 vim.opt.tabstop        = 4
 
+-- Trailing Whitespace config
+-- We add 'dashboard' to the default list
+vim.g.better_whitespace_filetypes_blacklist = {
+  'diff',
+  'git',
+  'gitcommit',
+  'unite',
+  'qf',
+  'help',
+  'markdown',
+  'fugitive',
+  'dashboard'
+}
+
 -- GUI
 local os_name          = jit.os
 if os_name == "Windows" then
@@ -77,7 +91,7 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true, desc = "Move to nex
 vim.keymap.set('n', '<leader>qq', ':qall<CR>', { silent = true, desc = "Quit Vim" })
 
 -- Code: remove trailing whitespace
-vim.keymap.set('n', '<leader>cw', ':%s/\\s\\+$//e<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>cw', ':StripWhitespaceOnChangedLines<CR>', { noremap = true, silent = true , desc = "Strip whitespace on changed lines"})
 
 -- Code: time command
 function _G.time_command(cmd)
@@ -131,7 +145,7 @@ require("lazy").setup({
     config = function() require('Comment').setup() end,
   },
   { "gpanders/editorconfig.nvim", },
-  { 'lukoshkin/trailing-whitespace', },
+  { 'ntpeters/vim-better-whitespace', },
   {
     'nvim-orgmode/orgmode',
     dependencies = { { "nvim-treesitter/nvim-treesitter" } },
