@@ -43,7 +43,8 @@ vim.g.better_whitespace_filetypes_blacklist = {
   'help',
   'markdown',
   'fugitive',
-  'dashboard'
+  'dashboard',
+  'toggleterm',
 }
 
 -- GUI
