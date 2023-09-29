@@ -283,3 +283,14 @@ require("lazy").setup({
     end
   },
 }, opts)
+
+-- Which-key registrations
+wk.register({
+  ["<leader>c"] = { name = "+code" },
+  ["<leader>f"] = { name = "+file" },
+  ["<leader>g"] = { name = "+git" },
+  ["<leader>q"] = { name = "+quit" },
+  ["<leader>b"] = { name = "+buffer" },
+  ["<leader>o"] = { name = "+open" },
+  ["<leader>p"] = { name = "+project" },
+})
