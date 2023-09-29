@@ -43,7 +43,8 @@ vim.g.better_whitespace_filetypes_blacklist = {
   'help',
   'markdown',
   'fugitive',
-  'dashboard'
+  'dashboard',
+  'toggleterm',
 }
 
 -- GUI
@@ -87,7 +88,7 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true, desc = "Move to nex
 vim.keymap.set('n', '<leader>qq', ':qall<CR>', { silent = true, desc = "Quit Vim" })
 
 -- Code: remove trailing whitespace
-vim.keymap.set('n', '<leader>cw', ':StripWhitespaceOnChangedLines<CR>', { noremap = true, silent = true , desc = "Strip whitespace on changed lines"})
+vim.keymap.set('n', '<leader>cw', ':StripWhitespaceOnChangedLines<CR>', { silent = true , desc = "Strip whitespace on changed lines"})
 
 -- Code: time command
 function _G.time_command(cmd)
@@ -285,12 +286,14 @@ require("lazy").setup({
 }, opts)
 
 -- Which-key registrations
+local wk = require("which-key")
 wk.register({
-  ["<leader>c"] = { name = "+code" },
-  ["<leader>f"] = { name = "+file" },
-  ["<leader>g"] = { name = "+git" },
-  ["<leader>q"] = { name = "+quit" },
   ["<leader>b"] = { name = "+buffer" },
-  ["<leader>o"] = { name = "+open" },
+  ["<leader>f"] = { name = "+file" },
   ["<leader>p"] = { name = "+project" },
+  ["<leader>c"] = { name = "+code" },
+  ["<leader>q"] = { name = "+quit" },
+  ["<leader>g"] = { name = "+git" },
+  ["<leader>o"] = { name = "+open" },
+  ["<leader>w"] = { name = "+window" },
 })
