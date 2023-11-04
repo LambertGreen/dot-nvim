@@ -142,10 +142,19 @@ require("lazy").setup({
     config = function() require('Comment').setup() end,
   },
   { "gpanders/editorconfig.nvim", },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      highlight = { enable = true },
+      indend = { enable = true },
+      ensure_installed = {"bash", "python", "json", "lua", "cpp"}
+    },
+    config = function() require('nvim-treesitter').setup() end,
+  },
   { 'ntpeters/vim-better-whitespace', },
   {
     'nvim-orgmode/orgmode',
-    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    dependencies = { { "nvimtreesitter/nvim-treesitter" } },
     ft = { 'org' },
     config = function()
       require('orgmode').setup()
