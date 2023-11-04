@@ -49,7 +49,7 @@ vim.g.better_whitespace_filetypes_blacklist = {
 
 -- GUI
 local os_name          = jit.os
-vim.opt.guifont = "Iosevka Nerd Font:h15"
+vim.opt.guifont = "Iosevka NFM:h10"
 
 ------------------------------------------------
 -- Keymaps
@@ -278,7 +278,7 @@ require("lazy").setup({
   -- Undo-Tree
   {
     "jiaoshijie/undotree",
-    config       = function()
+    config = function()
       require('undotree').setup()
     end,
     dependencies = {
