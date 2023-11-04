@@ -154,7 +154,7 @@ require("lazy").setup({
   { 'ntpeters/vim-better-whitespace', },
   {
     'nvim-orgmode/orgmode',
-    dependencies = { { "nvimtreesitter/nvim-treesitter" } },
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
     ft = { 'org' },
     config = function()
       require('orgmode').setup()
