@@ -174,7 +174,6 @@ require("lazy").setup({
   { "folke/neodev.nvim", },
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
       {
