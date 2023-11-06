@@ -103,22 +103,30 @@ end
 -------------------------------------------------
 require("lazy").setup({
   {
-    "catppuccin/nvim",
+    -- "catppuccin/nvim",
+    -- lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    -- priority = 1000, -- make sure to load this before all the other start plugins
+    -- config = function()
+    --   vim.cmd([[colorscheme catppuccin]])
+    --   if vim.fn.has('mac') then
+    --     local cmd = "defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light"
+    --     mode = vim.fn.system(cmd):gsub("\n", ""):lower()
+    --     if mode == "dark" then
+    --       vim.cmd('set background=dark')
+    --     else
+    --       vim.cmd('set background=light')
+    --     end
+    --   end
+    --   -- vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
+    --   -- vim.cmd('highlight NonText ctermbg=NONE guibg=NONE')
+    -- end,
+  },
+  {
+    "olimorris/onedarkpro.nvim",
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      vim.cmd([[colorscheme catppuccin]])
-      if vim.fn.has('mac') then
-        local cmd = "defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light"
-        mode = vim.fn.system(cmd):gsub("\n", ""):lower()
-        if mode == "dark" then
-          vim.cmd('set background=dark')
-        else
-          vim.cmd('set background=light')
-        end
-      end
-      -- vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
-      -- vim.cmd('highlight NonText ctermbg=NONE guibg=NONE')
+      vim.cmd("colorscheme onedark")
     end,
   },
   {
