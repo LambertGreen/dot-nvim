@@ -154,7 +154,7 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     opts = {
       highlight = { enable = true },
-      indend = { enable = true },
+      indent = { enable = true },
       ensure_installed = {"bash", "python", "json", "lua", "cpp"}
     },
     config = function() require('nvim-treesitter').setup() end,
