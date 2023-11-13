@@ -49,7 +49,11 @@ vim.g.better_whitespace_filetypes_blacklist = {
 
 -- GUI
 local os_name          = jit.os
-vim.opt.guifont = "Iosevka NFM:h10"
+if os_name == "Windows" then
+  vim.opt.guifont = "Iosevka NFM:h10"
+else
+  vim.opt.guifont = "Iosevka Nerd Font:h13"
+end
 
 ------------------------------------------------
 -- Keymaps
