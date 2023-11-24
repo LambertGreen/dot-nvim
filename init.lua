@@ -52,7 +52,7 @@ local os_name          = jit.os
 if os_name == "Windows" then
   vim.opt.guifont = "Iosevka NFM:h10"
 else
-  vim.opt.guifont = "Iosevka Nerd Font:h13"
+  vim.opt.guifont = "Iosevka NFM:h13"
 end
 
 ------------------------------------------------
