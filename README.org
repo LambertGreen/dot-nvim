@@ -9,6 +9,8 @@ When =Emacs= is not readily available then =Neovim= is summoned.
 - =Iosevka Nerd Font Mono=
 - A modern terminal for terminal usage (my current favorite is =Wezterm=)
 - (optional) A GUI application for GUI usage (I like apps that support dynamic resizing e.g. =VimR=)
+  - *Note*: given terminals support dynamic resizing there is really no need for a GUI application.
+    - A GUI app is nicer to: launch; close; find running windows
 
 * Setup
 ** Basic Setup
@@ -64,9 +66,12 @@ Use the ~NVIM_APPNAME~ to point to the non-default directory.
 +  [[https://github.com/folke/lazy.nvim][folke/lazy.nvim]]
 
 * TODOs
-** Open [0/2] :open:
+** Open [0/4] :open:
 *** TODO Add information on using a GUI application and how to support multiple configs
 *** TODO Configure code folding
 The default ~foldmethod~ is ~manual~.  Consider either using ~indent~ or using a useful package.
+*** TODO Configure project info to be present in the ~TitleString~ and find able via =Window Switcher=
+*** TODO Fix =LSP= and =Treesitter= setup for C++ code
+After refreshing the NVIM state directories, I am no longer getting full syntax highlighting for ~"~/dev/my/grimdawn-parser"~ project.
 
 ** Closed [0/0] :closed:
