@@ -1,0 +1,72 @@
+#+title: Lambert's Neovim configuration
+
+* Introduction
+When =Emacs= is not readily available then =Neovim= is summoned.
+
+** Requirements
+- =Neovim= >= 0.8.0 (needs to be built with =LuaJIT=)
+- =Git= >= 2.19.0 (for partial clones support)
+- =Iosevka Nerd Font Mono=
+- A modern terminal for terminal usage (my current favorite is =Wezterm=)
+- (optional) A GUI application for GUI usage (I like apps that support dynamic resizing e.g. =VimR=)
+
+* Setup
+** Basic Setup
+*** Backup =NVIM= state folders
+#+begin_src sh
+mv ~/.local/share/nvim{,.bak}
+mv ~/.local/state/nvim{,.bak}
+mv ~/.cache/nvim{,.bak}
+#+end_src
+
+*** Clone config to =NVIM= config folder
+Clone repo to =NVIM= default config folder: ~"~/.config/nvim"~.
+
+Example:
+#+begin_src sh
+git clone git@github.com:LambertGreen/dot-nvim.git ~/.config/nvim
+#+end_src
+
+** Advanced Setup
+*** Make config folder a symlink
+This is useful if you keep your dotfiles together in a one directory e.g. ~"~/dev/my/dotfiles"~. Symlinking management can done by the =GNU Stow= tool.
+
+Example:
+#+begin_src sh
+cd ~/dev/my/dotfiles
+stow nvim
+#+end_src
+
+*** Use non-default directory names to support multiple simultaneous configs
+If you want to try out different Neovim configs at the same time, then use a custom directory e.g. ~"~/.config/nvim-lgreen"~ and use the ~NVIM_APPNAME~ environment variable to point =NVIM= to use that directory.
+
+* Usage
+** Basic Usage
+*** Via Terminal
+Simply run ~nvim~ or setup an easier alias e.g. ~vim~ or ~vi~
+
+*** Via GUI Application
+Simply launch the application via your app launcher.
+
+** Advanced Usage
+*** Using non-default config directory via Terminal
+Use the ~NVIM_APPNAME~ to point to the non-default directory.
+
+Example:
+#+begin_src sh
+alias nvim-lgreen='NVIM_APPNAME=nvim-lgreen nvim'
+#+end_src
+
+*** Using non-default config directory via GUI application
+Use the ~NVIM_APPNAME~ to point to the non-default directory.
+* Configuration
+** Package Manager
++  [[https://github.com/folke/lazy.nvim][folke/lazy.nvim]]
+
+* TODOs
+** Open [0/2] :open:
+*** TODO Add information on using a GUI application and how to support multiple configs
+*** TODO Configure code folding
+The default ~foldmethod~ is ~manual~.  Consider either using ~indent~ or using a useful package.
+
+** Closed [0/0] :closed:
