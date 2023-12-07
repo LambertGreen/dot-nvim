@@ -6,6 +6,10 @@ vim.g.maplocalleader = " "
 vim.keymap.set('i', '<C-a>', '<C-o>0', {})
 vim.keymap.set('i', '<C-e>', '<C-o>$', {})
 
+-- Building
+vim.keymap.set('n', '<F5>', ':make<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>pc', ':make<CR>', { silent = true, desc = "Project compile" })
+
 -- Buffer management
 vim.keymap.set('n', '<leader>bs', ':w<CR>', { silent = true, desc = "Buffer save" })
 vim.keymap.set('n', '<leader>bd', ':bd<CR>', { silent = true, desc = "Buffer delete" })
