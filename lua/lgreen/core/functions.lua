@@ -1,5 +1,6 @@
+--[[ Custom Functions ]]
 
--- Code: time command
+-- Use to time how long a command takes to run
 function _G.time_command(cmd)
   local start_time = vim.loop.hrtime()
   vim.cmd(cmd)

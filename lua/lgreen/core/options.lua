@@ -1,14 +1,25 @@
+--[[ Option Settings ]]
 
+-- Title
 vim.opt.title          = true
 vim.opt.titlestring    = "%F - Nvim"
+
+-- Line numbers
 vim.opt.number         = true
 vim.opt.relativenumber = true
+
+-- Terminal
 vim.opt.termguicolors  = true
--- Enable mouse support in the terminal
 vim.opt.mouse          = "a"
+
+-- Editor
 vim.opt.shiftwidth     = 4
 vim.opt.softtabstop    = 4
 vim.opt.tabstop        = 4
+
+-- Folding
+vim.opt.foldlevel     = 1
+vim.opt.foldnestmax   = 3
 
 -- Trailing Whitespace config
 -- We add 'dashboard' to the default list
