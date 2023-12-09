@@ -17,6 +17,10 @@ vim.opt.shiftwidth     = 4
 vim.opt.softtabstop    = 4
 vim.opt.tabstop        = 4
 
+-- Splits
+vim.opt.splitbelow    = true
+vim.opt.splitright    = true
+
 -- Folding
 vim.opt.foldlevel     = 1
 vim.opt.foldnestmax   = 3
