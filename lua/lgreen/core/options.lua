@@ -22,8 +22,8 @@ vim.opt.splitbelow    = true
 vim.opt.splitright    = true
 
 -- Folding
-vim.opt.foldlevel     = 1
-vim.opt.foldnestmax   = 3
+vim.opt.foldlevel     = 99
+-- vim.opt.foldnestmax   = 3
 
 -- Trailing Whitespace config
 -- We add 'dashboard' to the default list
