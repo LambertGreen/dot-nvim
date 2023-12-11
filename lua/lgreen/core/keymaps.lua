@@ -22,15 +22,17 @@ vim.keymap.set('n', '<leader>bb', '<Cmd>Telescop buffers<CR>', { silent = true, 
 vim.keymap.set('n', '<leader>ws', ':split<CR>', { silent = true, desc = "Window split" })
 vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { silent = true, desc = "Window vertical split" })
 vim.keymap.set('n', '<leader>wh', '<C-w>h', { silent = true, desc = "Move to left window" })
-vim.keymap.set('n', '<leader>wh', '<C-w>h', { silent = true, desc = "Move to left window" })
 vim.keymap.set('n', '<leader>wj', '<C-w>j', { silent = true, desc = "Move to bottom window" })
 vim.keymap.set('n', '<leader>wk', '<C-w>k', { silent = true, desc = "Move to top window" })
 vim.keymap.set('n', '<leader>wl', '<C-w>l', { silent = true, desc = "Move to right window" })
 vim.keymap.set('n', '<leader>ww', '<C-w>w', { silent = true, desc = "Move to next window" })
-vim.keymap.set('n', '<leader>wq', ':q<CR>', { silent = true, desc = "Move to next window" })
+vim.keymap.set('n', '<leader>wq', ':q<CR>', { silent = true, desc = "Close window" })
+
+-- Searching
+vim.keymap.set('n', '<Leader>sp', '<cmd>Telescope live_grep<CR>', { silent = true, desc = "Search files" })
 
 -- Terminal
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true, desc = "Move to next window" })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true })
 
 -- Quitting
 vim.keymap.set('n', '<leader>qq', ':qall<CR>', { silent = true, desc = "Quit Vim" })
