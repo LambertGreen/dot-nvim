@@ -1,4 +1,4 @@
-  return
+return
   {
     {
       "nvim-treesitter/nvim-treesitter",
@@ -43,6 +43,7 @@
             "dockerfile",
             "gitignore",
             "html",
+            "java",
             "javascript",
             "json",
             "lua",
