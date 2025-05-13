@@ -19,6 +19,11 @@ vim.opt.tabstop        = 4
 vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
 
+-- Use system clipboard by default
+-- We go this way because we Emacs+Evil on macOS
+-- and the resultant experience is shared clipboards
+vim.opt.clipboard = "unnamedplus"
+
 -- Splits
 vim.opt.splitbelow    = true
 vim.opt.splitright    = true
